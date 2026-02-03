@@ -5,7 +5,7 @@ class UserControl implements IFormControl<IUser> {
     prepareSetUser(user: Omit<IUser, 'id'>): IUser {
         if (user.labels && typeof user.labels === 'string') {
             user.labels = user.labels
-                .split(';')
+                ?.split(';')
                 .map((label: string) => ({ text: label.trim() }) as ILabel)
         }
 
@@ -16,7 +16,7 @@ class UserControl implements IFormControl<IUser> {
     prepareGetUsers(users: IUser[]): IUser[] {
         return users.map((user: IUser) => ({
             ...user,
-            labels: (user.labels as ILabel[]).map(l => l.text).join(';'),
+            labels: (user.labels as ILabel[])?.map(l => l.text).join(';'),
         }))
     }
 }

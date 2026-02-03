@@ -6,6 +6,7 @@
                 id="addUser"
                 variant="outline"
                 @click="$emit('add')"
+                class="cursor-pointer"
             >
                 <Plus />
             </Button>
@@ -24,6 +25,7 @@
 
 <script setup lang="ts">
 import Button from '@/components/ui/button/Button.vue'
+import Label from './ui/label/Label.vue'
 import { Plus, CircleQuestionMark } from 'lucide-vue-next'
 
 defineEmits<{
