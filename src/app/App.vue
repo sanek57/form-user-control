@@ -7,6 +7,7 @@
             <ListUsers
                 :users="users"
                 @add="addEmptyUser"
+                @save="editUser => updateUser(editUser)"
                 @delete=""
             />
         </div>
@@ -20,7 +21,7 @@ import { useUserStore } from '@/shared/store/user-store'
 import type { IUser } from '@/shared/types'
 import { reactive } from 'vue'
 
-const { users, addUser, deleteUser } = useUserStore()
+const { users, addUser, deleteUser, updateUser } = useUserStore()
 
 const emptyUser = reactive<IUser>({
     labels: '',

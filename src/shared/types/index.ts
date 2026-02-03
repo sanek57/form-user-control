@@ -17,5 +17,5 @@ export interface IUser {
 
 export const optionsType = [
     { id: 'LDPA', name: 'LDPA' },
-    { id: 'LOCAL', name: 'Локальная' },
+    { id: 'Локальная', name: 'Локальная' },
 ]

@@ -18,7 +18,7 @@
                 :user="user"
                 :key="user.id"
                 @delete="$emit('delete', user.id as number)"
-                @save=""
+                @save="editUser => $emit('save', editUser)"
             />
         </div>
         <div
@@ -46,6 +46,7 @@ const props = defineProps<{
 defineEmits<{
     (e: 'delete', id: number): void
     (e: 'add'): void
+    (e: 'save', user: IUser): void
 }>()
 
 console.log(123, props.users)

@@ -6,6 +6,7 @@ class UserControl implements IFormControl<IUser> {
         if (user.labels) {
             user.labelsArr = user.labels
                 ?.split(';')
+                .filter(l => l.trim().length)
                 .map((label: string) => ({ text: label.trim() }) as ILabel)
         }
 
@@ -19,7 +20,7 @@ class UserControl implements IFormControl<IUser> {
     prepareGetUsers(users: IUser[]): IUser[] {
         return users.map((user: IUser) => ({
             ...user,
-            labels: user.labelsArr?.map(l => l.text).join(';'),
+            labels: user.labelsArr?.map(l => l.text).join('; '),
         }))
     }
 }

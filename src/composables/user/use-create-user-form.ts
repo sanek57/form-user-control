@@ -4,13 +4,12 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 
 export const useCreateUserForm = (initialValues: IUser) => {
-  const { handleSubmit, setErrors } = useForm({
-    validationSchema: toTypedSchema(UserBaseSchema),
-    initialValues,
-  })
+    const form = useForm({
+        validationSchema: toTypedSchema(UserBaseSchema),
+        initialValues,
+    })
 
-  return {
-    setErrors,
-    handleSubmit,
-  }
+    return {
+        ...form,
+    }
 }

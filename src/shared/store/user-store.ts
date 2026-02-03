@@ -31,6 +31,7 @@ export const useUserStore = defineStore(STORAGE_KEY, {
             this.$save()
         },
         updateUser(user: IUser) {
+            console.log(4, user)
             if (this.users) {
                 this.users = this.users.map(u => {
                     if (u.id === user.id) {

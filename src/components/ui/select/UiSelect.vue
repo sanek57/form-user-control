@@ -62,7 +62,7 @@ const props = withDefaults(
             | number[]
         valueKey?: string
         labelKey?: string
-        class?: string
+        class?: any
         placeholderSearch?: string
         defaultValue?: string
     }>(),
