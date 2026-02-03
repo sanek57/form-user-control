@@ -2,21 +2,24 @@ import type { ILabel, IUser } from '../../shared/types'
 import { formUserControl, type IFormControl } from './formControl'
 
 class UserControl implements IFormControl<IUser> {
-    prepareSetUser(user: Omit<IUser, 'id'>): IUser {
-        if (user.labels && typeof user.labels === 'string') {
-            user.labels = user.labels
+    prepareSetUser(user: IUser): IUser {
+        if (user.labels) {
+            user.labelsArr = user.labels
                 ?.split(';')
                 .map((label: string) => ({ text: label.trim() }) as ILabel)
         }
 
         if (user.type === 'LDPA') user.password = null
 
+        if (user.id) {
+            return { ...user }
+        }
         return { ...user, id: Date.now() }
     }
     prepareGetUsers(users: IUser[]): IUser[] {
         return users.map((user: IUser) => ({
             ...user,
-            labels: (user.labels as ILabel[])?.map(l => l.text).join(';'),
+            labels: user.labelsArr?.map(l => l.text).join(';'),
         }))
     }
 }

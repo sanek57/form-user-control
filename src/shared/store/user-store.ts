@@ -13,10 +13,14 @@ interface UserState {
 
 export const useUserStore = defineStore(STORAGE_KEY, {
     state: (): UserState => {
-        const savedUsers = userApi.getFromLocalStorage<IUser[] | null>(STORAGE_KEY)
+        const savedUsers = userApi.getFromLocalStorage<IUser[] | null>(
+            STORAGE_KEY,
+        )
 
         return {
-            users: savedUsers ? userControl.prepareGetUsers(savedUsers as IUser[]) : [],
+            users: savedUsers
+                ? userControl.prepareGetUsers(savedUsers as IUser[])
+                : [],
         }
     },
     actions: {
@@ -24,6 +28,17 @@ export const useUserStore = defineStore(STORAGE_KEY, {
             const newUser: IUser = userControl.prepareSetUser(user)
 
             this.users?.push(newUser)
+            this.$save()
+        },
+        updateUser(user: IUser) {
+            if (this.users) {
+                this.users = this.users.map(u => {
+                    if (u.id === user.id) {
+                        return userControl.prepareSetUser(user)
+                    }
+                    return u
+                })
+            }
             this.$save()
         },
         deleteUser(id: number) {

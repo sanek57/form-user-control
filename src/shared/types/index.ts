@@ -8,7 +8,8 @@ export interface ILabel {
 
 export interface IUser {
     id?: number
-    labels?: ILabel[] | string
+    labels?: string
+    labelsArr?: ILabel[]
     type: RecordType
     login: string
     password: string | null
