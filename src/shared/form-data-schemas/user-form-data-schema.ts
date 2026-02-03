@@ -23,7 +23,7 @@ export const UserBaseSchema = z
         password: z
             .string()
             .max(100, { message: 'Логин не может превышать 100 символов' })
-            .optional()
+            .nullable()
             .default(''),
     })
     .refine(

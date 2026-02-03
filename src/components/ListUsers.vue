@@ -18,6 +18,7 @@
                 :user="user"
                 :key="user.id"
                 @delete="$emit('delete', user.id as number)"
+                @save=""
             />
         </div>
         <div
