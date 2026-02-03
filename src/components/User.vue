@@ -86,7 +86,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { FormField, FormControl, FormItem } from '@/components/ui/form'
 import Button from '@/components/ui/button/Button.vue'
 import UiSelect from '@/components/ui/select/UiSelect.vue'
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 
 const props = defineProps<{
     user: IUser

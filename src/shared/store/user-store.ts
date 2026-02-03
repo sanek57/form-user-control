@@ -31,7 +31,6 @@ export const useUserStore = defineStore(STORAGE_KEY, {
             this.$save()
         },
         updateUser(user: IUser) {
-            console.log(4, user)
             if (this.users) {
                 this.users = this.users.map(u => {
                     if (u.id === user.id) {
@@ -43,8 +42,10 @@ export const useUserStore = defineStore(STORAGE_KEY, {
             this.$save()
         },
         deleteUser(id: number) {
-            this.users?.filter(u => u.id !== id)
-            this.$save()
+            if (this.users) {
+                this.users = this.users?.filter(u => u.id !== id)
+                this.$save()
+            }
         },
         $save() {
             userApi.saveToLocalStorage<IUser[] | null>(STORAGE_KEY, this.users)

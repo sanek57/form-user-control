@@ -5,10 +5,10 @@
         <div class="w-full max-w-3xl">
             <Header @add="addEmptyUser" />
             <ListUsers
-                :users="users"
+                :users="store.users"
                 @add="addEmptyUser"
-                @save="editUser => updateUser(editUser)"
-                @delete=""
+                @save="store.updateUser"
+                @delete="confirmDelete"
             />
         </div>
     </div>
@@ -21,7 +21,7 @@ import { useUserStore } from '@/shared/store/user-store'
 import type { IUser } from '@/shared/types'
 import { reactive } from 'vue'
 
-const { users, addUser, deleteUser, updateUser } = useUserStore()
+const store = useUserStore()
 
 const emptyUser = reactive<IUser>({
     labels: '',
@@ -31,7 +31,13 @@ const emptyUser = reactive<IUser>({
 })
 
 const addEmptyUser = () => {
-    addUser(emptyUser)
+    store.addUser(emptyUser)
+}
+
+const confirmDelete = (id: number) => {
+    if (confirm('Удалить пользователя?')) {
+        store.deleteUser(id)
+    }
 }
 </script>
 

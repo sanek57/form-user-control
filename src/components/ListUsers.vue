@@ -48,6 +48,4 @@ defineEmits<{
     (e: 'add'): void
     (e: 'save', user: IUser): void
 }>()
-
-console.log(123, props.users)
 </script>
